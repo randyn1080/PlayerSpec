@@ -1,0 +1,7 @@
+## Interface: 11303
+## Title: Player Spec
+## Author: Randy Nava
+## Version: 1.0
+## SavedVariables: PlayerSpec
+
+main.lua
