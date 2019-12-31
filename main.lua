@@ -4,7 +4,7 @@ SLASH_REPORTSPEC1 = "/rs"
 
 local SendAddonMessage = C_ChatInfo.SendAddonMessage
 
-
+local Regi = C_ChatInfo.RegisterAddonMessagePrefix("SPC")
 
 SlashCmdList.REPORTSPEC = function()
     
@@ -21,13 +21,21 @@ SlashCmdList.REPORTSPEC = function()
 
     SendAddonMessage("SPC",str,"GUILD")
 
+    print(Regi) -- true if registration of addon channel success
+
+    local one = C_ChatInfo.GetRegisteredAddonMessagePrefixes()
+
+    print(one)
+
 end
+
 
 
 
 function eventThing(table, event, addonChan, msg, chan, nameServ, name)
 
     if addonChan == "SPC" then
+        print(format("%s, %s", msg, name))
         tinsert(PlayerSpec,format("%s, %s",date(), msg))
         print(msg)
     end
