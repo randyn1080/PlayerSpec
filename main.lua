@@ -1,42 +1,38 @@
 PlayerSpec = {}
-
 SLASH_REPORTSPEC1 = "/rs"
-
 local SendAddonMessage = C_ChatInfo.SendAddonMessage
-
 local Regi = C_ChatInfo.RegisterAddonMessagePrefix("SPC")
 
-SlashCmdList.REPORTSPEC = function()
+
+
+SlashCmdList.REPORTSPEC = function() 
     
     local str = "";
-    local name = UnitName("player")
+    -- local name = UnitName("player")
     local class = UnitClass("player")
     
     for i = 1, 3 do
-        local id, _, desc = GetTalentTabInfo(i)
-        str = str .. ' ' .. id .. ' ' .. desc 
+        local id, _, desc = GetTalentTabInfo(i) -- need to break up into 3 seperate variables
+        str = str .. ' ' .. id .. ' ' .. desc
     end
 
-    str = name .. ' ' .. class .. str
+    str = class .. str
 
     SendAddonMessage("SPC",str,"GUILD")
 
-    print(Regi) -- true if registration of addon channel success
-
-    local one = C_ChatInfo.GetRegisteredAddonMessagePrefixes()
-
-    print(one)
-
 end
-
 
 
 
 function eventThing(table, event, addonChan, msg, chan, nameServ, name)
 
     if addonChan == "SPC" then
-        print(format("%s, %s", msg, name))
-        tinsert(PlayerSpec,format("%s, %s",date(), msg))
+
+        tinsert(PlayerSpec,{
+            [name] = msg,
+            Date = date()
+        })
+
         print(msg)
     end
   
